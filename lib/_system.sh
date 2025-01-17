@@ -367,7 +367,7 @@ services:
       - MAIL_FROM_ADDRESS=${mail_username}
       - VITE_APP_NAME="${APP_NAME}"
       - WS_WHATSAPP_TOKEN=7hK9mN2pQ5rS8vW3xZ1yA4dF6gH0jL2nP5tR8wB9cE4mJ7kU3vX6yA0bD4fG
-      - WS_WHATSAPP_URL=https://${whatsappservice_url}
+      - WS_WHATSAPP_URL=https://${whatsappservice_url}/api/
       - CHECKOUTAPP_ALLOWED_IPS=${checkoutapp_allowed_ip},127.0.0.1
       - PANDAVIDEO_API_KEY="${pandavideo_credential}"
   frontend:

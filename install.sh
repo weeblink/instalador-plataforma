@@ -34,6 +34,7 @@ whatsappservice_url="waservice.clubedosfoguetes.com.br"
 db_name="dbname"
 db_user="dbuser"
 db_password="dbpass"
+postgresql_port=5432
 plataform_name="luminis"
 mail_host="smtp.hostinger.com"
 mail_port="465"
