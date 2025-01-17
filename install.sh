@@ -46,7 +46,7 @@ system_request_ssl
 print_banner
 cd /var/www/"${plataform_name}" || exit
 docker-compose down -v
-docker-compose up --build
+docker-compose up -d --build
 
 printf "\n\n${WHITE} ✅ Instalação finalizada com sucesso!"
 
