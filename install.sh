@@ -25,23 +25,7 @@ EOF
 source "${PROJECT_ROOT}"/.env
 
 # interactive CLI
-#inquiry_options
-
-link_git="https://axify-dev:${GITHUB_TOKEN}@github.com/weeblink/luminis.git"
-frontend_url="clubedosfoguetes.com.br"
-backend_url="api.clubedosfoguetes.com.br"
-whatsappservice_url="waservice.clubedosfoguetes.com.br"
-db_name="dbname"
-db_user="dbuser"
-db_password="dbpass"
-postgresql_port=5432
-plataform_name="luminis"
-mail_host="smtp.hostinger.com"
-mail_port="465"
-mail_username="username@clubedosfoguetes.com.br"
-mail_password="123456"
-pandavideo_credential="panda-xxxxx"
-checkoutapp_allowed_ip="15.229.103.46"
+inquiry_options
 
 # Instalar dependências
 system_install_dependences
