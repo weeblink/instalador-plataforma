@@ -606,13 +606,11 @@ system_request_ssl(){
     frontend_domain=$(echo "${frontend_url}" | sed 's|https://||')
     waservice_domain=$(echo "${whatsappservice_url}" | sed 's|https://||')
 
-    if ! certbot -m "${mail_username}" \
+    certbot -m "${mail_username}" \
             --nginx \
             --agree-tos \
             --non-interactive \
-            --domains "$backend_domain,$frontend_domain,$waservice_domain"; then
-        printf "\n${RED}❌ Falha na configuração dos certificados${WHITE}\n"
-    fi
+            --domains "$backend_domain,$frontend_domain,$waservice_domain"
 
     sleep 2
 
