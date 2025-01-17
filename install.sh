@@ -56,9 +56,10 @@ system_configure_docker_compose
 
 # Network
 system_config_nginx
+system_request_ssl
 
 # Run docker compose
-printf "Path: /var/www/${plataform_name}"
+print_banner
 cd /var/www/"${plataform_name}" || exit
 docker-compose down -v
 docker-compose up --build

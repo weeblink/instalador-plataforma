@@ -593,3 +593,28 @@ system_config_nginx(){
     nginx -t
     sleep 5
 }
+
+system_request_ssl(){
+
+    print_banner
+    printf "${WHITE} 💻 Configurando certificados SSL...${GRAY_LIGHT}"
+    printf "\n\n"
+
+    sleep 2
+
+    backend_domain=$(echo "${backend_url}" | sed 's|https://||')
+    frontend_domain=$(echo "${frontend_url}" | sed 's|https://||')
+    waservice_domain=$(echo "${whatsappservice_url}" | sed 's|https://||')
+
+    if ! certbot -m "${mail_username}" \
+            --nginx \
+            --agree-tos \
+            --non-interactive \
+            --domains "$backend_domain,$frontend_domain,$waservice_domain"; then
+        printf "\n${RED}❌ Falha na configuração dos certificados${WHITE}\n"
+    fi
+
+    sleep 2
+
+    printf "\n\n${WHITE} ✅ Certificados configurados com sucesso!"
+}
