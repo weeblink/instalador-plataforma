@@ -60,6 +60,7 @@ system_config_nginx
 # Run docker compose
 printf "Path: /var/www/${plataform_name}"
 cd /var/www/"${plataform_name}" || exit
+docker-compose down -v
 docker-compose up --build
 
 printf "\n\n${WHITE} ✅ Instalação finalizada com sucesso!"
