@@ -382,7 +382,7 @@ services:
       - ./frontend:/app
       - /app/node_modules
     environment:
-      - REACT_APP_API_URL=${backend_url}
+      - REACT_APP_API_URL=https://${backend_url}
   pg:
     networks:
       - app-network
@@ -451,7 +451,7 @@ nginx_config_frontend(){
     printf "${WHITE} 💻 Configurando rede com nginx frontend...${GRAY_LIGHT}"
     printf "\n\n"
 
-    cat > /etc/nginx/sites-available/${plataform_name}-frontend << 'EOL'
+    cat > /etc/nginx/sites-available/${plataform_name}-frontend << EOL
 server {
     listen 80;
     server_name ${frontend_url} www.${frontend_url};
@@ -502,7 +502,7 @@ nginx_config_backend(){
     printf "${WHITE} 💻 Configurando rede com nginx backend...${GRAY_LIGHT}"
     printf "\n\n"
 
-    cat > /etc/nginx/sites-available/${plataform_name}-backend << 'EOL'
+    cat > /etc/nginx/sites-available/${plataform_name}-backend << EOL
 server {
     listen 80;
     server_name ${backend_url};
@@ -538,7 +538,7 @@ nginx_config_waservice(){
    printf "${WHITE} 💻 Configurando rede com nginx WA Service...${GRAY_LIGHT}"
    printf "\n\n"
 
-   cat > /etc/nginx/sites-available/${plataform_name}-waservice << 'EOL'
+   cat > /etc/nginx/sites-available/${plataform_name}-waservice << EOL
 server {
    listen 80;
    server_name ${whatsappservice_url};
