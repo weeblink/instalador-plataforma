@@ -320,9 +320,6 @@ services:
       - ./backend:/var/www/html
       - ./files:/var/www/html/storage/app/public
       - ./backend/logs/supervisor:/var/log/supervisor
-    depends_on:
-      pg:
-        condition: service_healthy
     environment:
       - APP_NAME=${plataform_name}
       - APP_ENV=local
@@ -342,8 +339,8 @@ services:
       - LOG_DEPRECATIONS_CHANNEL=null
       - LOG_LEVEL=debug
       - DB_CONNECTION=pgsql
-      - DB_HOST=pg
-      - DB_PORT=${postgresql_port}
+      - DB_HOST=${external_db_host}
+      - DB_PORT=${external_db_port}
       - DB_DATABASE=${db_name}
       - DB_USERNAME=${db_user}
       - DB_PASSWORD=${db_password}
@@ -383,24 +380,6 @@ services:
       - /app/node_modules
     environment:
       - REACT_APP_API_URL=https://${backend_url}
-  pg:
-    networks:
-      - app-network
-    image: bitnami/postgresql:latest
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRESQL_USERNAME=${db_user}
-      - POSTGRESQL_PASSWORD=${db_password}
-      - POSTGRESQL_DATABASE=${db_name}
-      - ALLOW_EMPTY_PASSWORD=no
-    volumes:
-      - postgres_data:/bitnami/postgresql
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${db_user}" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
   whatsapp:
     networks:
       - app-network
@@ -419,8 +398,8 @@ services:
       - PORT=4000
       - MIDDLEWARE_TOKEN=7hK9mN2pQ5rS8vW3xZ1yA4dF6gH0jL2nP5tR8wB9cE4mJ7kU3vX6yA0bD4fG
       - DB_DIALECT=postgres
-      - DB_HOST=pg
-      - DB_PORT=5432
+      - DB_HOST=${external_db_host}
+      - DB_PORT=${external_db_port}
       - DB_USER=${db_user}
       - DB_PASS=${db_password}
       - DB_NAME=${db_name}
@@ -428,8 +407,6 @@ services:
 networks:
   app-network:
     driver: bridge
-volumes:
-  postgres_data:
 EOL
 
     if [ $? -ne 0 ]; then
