@@ -354,7 +354,7 @@ services:
       - CACHE_STORE=database
       - CACHE_PREFIX=""
       - SESSION_DOMAIN=${frontend_url},www.${frontend_url},localhost,127.0.0.1
-      - SANCTUM_STATEFUL_DOMAINS=.${frontend_url},www.${frontend_url},localhost:5174,127.0.0.1:5174
+      - SANCTUM_STATEFUL_DOMAINS=${frontend_url},www.${frontend_url},localhost:5174,127.0.0.1:5174
       - MAIL_MAILER=smtp
       - MAIL_HOST=${mail_host}
       - MAIL_PORT=${mail_port}
