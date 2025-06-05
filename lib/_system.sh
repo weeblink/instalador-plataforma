@@ -315,7 +315,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8001:8001"
+      - "8001:8000"
     volumes:
       - ./backend:/var/www/html
       - ./files:/var/www/html/storage/app/public
@@ -339,8 +339,8 @@ services:
       - LOG_DEPRECATIONS_CHANNEL=null
       - LOG_LEVEL=debug
       - DB_CONNECTION=pgsql
-      - DB_HOST=${external_db_host}
-      - DB_PORT=${external_db_port}
+      - DB_HOST=localhost
+      - DB_PORT=${postgresql_port}
       - DB_DATABASE=${db_name}
       - DB_USERNAME=${db_user}
       - DB_PASSWORD=${db_password}
@@ -379,7 +379,7 @@ services:
       - ./frontend:/app
       - /app/node_modules
     environment:
-      - REACT_APP_API_URL=https://${backend_url}
+      - REACT_APP_API_URL=https://${backend_url}/api
   whatsapp:
     networks:
       - app-network
